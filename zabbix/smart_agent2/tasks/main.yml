@@ -25,7 +25,7 @@
         update_cache: true
         name: smartmontools
         state: present
-      when: ansible_pkg_mgr == "cnf"
+      when: ansible_pkg_mgr == "dnf"
 
     - name: restart zabbix agent 2
       ansible.builtin.systemd:
