@@ -13,14 +13,14 @@
         group: root
         mode: 0400
 
-    - name: Install smartmontools if it's not already installed
+    - name: Install smartmontools if it's not already installed (Debian/Ubuntu/etc)
       ansible.builtin.apt:
         update_cache: true
         name: smartmontools
         state: present
       when: ansible_pkg_mgr == "apt"
 
-    - name: Install smartmontools if it's not already installed
+    - name: Install smartmontools if it's not already installed (RedHat/Variants)
       ansible.builtin.dnf:
         update_cache: true
         name: smartmontools
