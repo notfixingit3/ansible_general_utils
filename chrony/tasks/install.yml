@@ -1,0 +1,14 @@
+---
+- name: Install Chrony
+  hosts: all:!ns
+  vars_files:
+    - "../vars/main.yml"
+  become: true
+
+  tasks:
+    - name: Update repositories cache and install "chrony" package
+      ansible.builtin.apt:
+        name: chrony
+        update_cache: true
+        state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

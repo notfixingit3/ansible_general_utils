@@ -1,0 +1,23 @@
+---
+- name: Configure Chrony
+  hosts: all
+  vars_files:
+    - "../vars/main.yml"
+  become: true
+
+  tasks:
+    - template:
+        src: ../templates/chrony.22.04.conf.j2
+        dest: /etc/chrony/chrony.conf
+        owner: root
+        group: root
+        mode: u=wr,g=r,o=r,+x
+      notify: Restart Chrony
+      become: true
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'jammy'
+
+  handlers:
+    - name: Restart Chrony
+      service:
+        name: chrony
+        state: restarted

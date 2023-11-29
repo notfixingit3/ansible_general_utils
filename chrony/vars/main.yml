@@ -1,0 +1,3 @@
+# Set to your ntp servers
+time1_server: 10.10.10.10
+time2_server: 10.10.10.10
