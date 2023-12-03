@@ -9,6 +9,12 @@
       private: false
 
   tasks:
-    - name: Install the package {{ package }}
+    - name: Install the package {{ package }} on Debian and Variants
       ansible.builtin.apt:
         name: '{{ package }}'
+      when: ansible_pkg_mgr == "apt"
+
+    - name: Install the package {{ package }} on RedHat and Variants
+      ansible.builtin.apt:
+        name: '{{ package }}'
+      when: ansible_pkg_mgr == "dnf"
