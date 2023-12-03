@@ -1,0 +1,14 @@
+- name: Install package
+  hosts: all
+  gather_facts: false
+  become: true
+  vars_prompt:
+
+    - name: package
+      prompt: "What package do you want to install?"
+      private: false
+
+  tasks:
+    - name: Install the package {{ package }}
+      ansible.builtin.apt:
+        name: '{{ package }}'
